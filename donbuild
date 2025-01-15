@@ -1,0 +1,10 @@
+#!/bin/bash
+rm -rf build
+cmake -Bbuild -DCMAKE_BUILD_TYPE=RELEASE || exit 1
+cmake --build build --target elastika-filter_VST3 || exit 1
+echo "INSTALLING"
+INSTALLDIR=/home/don/.vst3
+rm -rf ${INSTALLDIR}/Elastika.vst3
+cp -av ./build/elastika-filter_artefacts/RELEASE/VST3/Elastika.vst3 ${INSTALLDIR} || exit 1
+echo "SUCCESS"
+exit 0
